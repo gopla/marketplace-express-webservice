@@ -1,0 +1,20 @@
+{
+  "name": "marketplace-express-webservice",
+  "version": "1.0.0",
+  "description": "\"# marketplace-express-webservice\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yudhst/marketplace-express-webservice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yudhst/marketplace-express-webservice/issues"
+  },
+  "homepage": "https://github.com/Yudhst/marketplace-express-webservice#readme"
+}
