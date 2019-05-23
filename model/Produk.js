@@ -9,7 +9,7 @@ const Produk = sequelize.define(
             autoIncrement: true
         },
 
-        nama_produk: {
+        nama: {
             type: Sequelize.STRING(50)
         },
 

@@ -26,7 +26,7 @@ module.exports = {
     store(req, res) {
         const produk = req.body
         Produk.create({
-                nama_produk: produk.nama,
+                nama: produk.nama,
                 stok: produk.stok,
                 harga: produk.harga
             })
@@ -41,7 +41,7 @@ module.exports = {
         const id = req.params.id
         const produk = req.body
         const newData = {
-            nama_produk: produk.nama,
+            nama: produk.nama,
             stok: produk.stok,
             harga: produk.harga
         }
