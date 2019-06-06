@@ -1,54 +1,52 @@
-const Produk = require('../model/Produk')
-const path = require('path')
+const User = require('../model/User')
 
 module.exports = {
     index(req, res) {
-        Produk.findAll()
+        User.findAll()
             .then(function (rows) {
                 res.json(rows)
             })
     },
     show(req, res) {
-        const id = req.params.id
-        Produk.findAll({
+        id = req.params.id
+        User.findAll({
                 where: {
-                    id_produk: id
+                    id_user: id
                 }
             })
             .then(function (rows) {
                 res.json(rows)
             })
-
     },
-    create(req, res) {
+    create() {
 
     },
     store(req, res) {
-        const produk = req.body
-        Produk.create({
-                nama: produk.nama,
-                stok: produk.stok,
-                harga: produk.harga
+        user = req.body
+        User.create({
+                nama: user.nama,
+                username: user.username,
+                password: user.password
             })
             .then(function (rows) {
                 res.json(rows)
             })
     },
-    edit(req, res) {
+    edit() {
 
     },
     update(req, res) {
         const id = req.params.id
-        const produk = req.body
+        const user = req.body
         const newData = {
-            nama: produk.nama,
-            stok: produk.stok,
-            harga: produk.harga
+            nama: user.nama,
+            username: user.username,
+            password: user.password
         }
 
-        Produk.update(newData, {
+        User.update(newData, {
                 where: {
-                    id_produk: id
+                    id_user: id
                 }
             })
             .then(() => {
@@ -57,9 +55,9 @@ module.exports = {
     },
     delete(req, res) {
         const id = req.params.id
-        Produk.destroy({
+        User.destroy({
                 where: {
-                    id_produk: id
+                    id_user: id
                 }
             })
             .then(() => {
