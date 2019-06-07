@@ -25,6 +25,7 @@ module.exports = {
         user = req.body
         User.create({
                 nama: user.nama,
+                email: user.email,
                 username: user.username,
                 password: user.password
             })
@@ -40,6 +41,7 @@ module.exports = {
         const user = req.body
         const newData = {
             nama: user.nama,
+            email: user.email,
             username: user.username,
             password: user.password
         }
