@@ -10,11 +10,7 @@ module.exports = {
     },
     show(req, res) {
         const id = req.params.id
-        Produk.findAll({
-                where: {
-                    id_produk: id
-                }
-            })
+        Produk.findByPk(id)
             .then(function (rows) {
                 res.json(rows)
             })
