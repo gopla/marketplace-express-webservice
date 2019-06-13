@@ -1,5 +1,4 @@
 const Produk = require('../model/Produk')
-const path = require('path')
 
 module.exports = {
     index(req, res) {
@@ -9,57 +8,31 @@ module.exports = {
             })
     },
     show(req, res) {
-        const id = req.params.id
-        Produk.findByPk(id)
+        Produk.findByPk(req.params.id)
             .then(function (rows) {
                 res.json(rows)
             })
-
-    },
-    create(req, res) {
-
     },
     store(req, res) {
-        const produk = req.body
-        Produk.create({
-                nama: produk.nama,
-                stok: produk.stok,
-                harga: produk.harga
-            })
+        Produk.create(req.body)
             .then(function (rows) {
                 res.json(rows)
             })
     },
-    edit(req, res) {
-
-    },
     update(req, res) {
-        const id = req.params.id
-        const produk = req.body
-        const newData = {
-            nama: produk.nama,
-            stok: produk.stok,
-            harga: produk.harga
-        }
-
-        Produk.update(newData, {
-                where: {
-                    id_produk: id
-                }
-            })
-            .then(() => {
-                res.json('data updated')
+        Produk.findByPk(req.params.id)
+            .then(function (row) {
+                row.update(req.body)
+                res.json(row)
             })
     },
     delete(req, res) {
-        const id = req.params.id
-        Produk.destroy({
-                where: {
-                    id_produk: id
-                }
-            })
-            .then(() => {
-                res.json('data deleted')
+        Produk.findByPk(req.params.id)
+            .then((row) => {
+                row.destroy()
+                res.json({
+                    success: true
+                })
             })
     }
 }
