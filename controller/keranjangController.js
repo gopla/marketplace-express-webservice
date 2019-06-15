@@ -1,25 +1,44 @@
-const Keranjang = require('../model/Keranjang')
+const DetailKeranjang = require("../model/DetailKeranjang");
 
 module.exports = {
-    index(req, res){
-       
-    },
-    show(req, res){
-        
-    },
-    create(req, res) {
+  index(req, res) {
+    DetailKeranjang.find({
+      where: {
+        id_keranjang: req.params.id
+      }
+    }).then(function(rows) {
+      res.json(rows);
+    });
 
-    },
-    store(req, res) {
-        
-    },
-    edit(req, res) {
-
-    },
-    update(req, res) {
-        
-    },
-    delete(req, res) {
-        
-    }
-}
+    // res.json(
+    //   await DetailKeranjang.find({
+    //     where: {
+    //       id_keranjang: req.params.id
+    //     }
+    //   })
+    // );
+  },
+  store(req, res) {
+    DetailKeranjang.create(req.body).then(function(rows) {
+      res.json(rows);
+    });
+  },
+  update(req, res) {
+    DetailKeranjang.findByPk(req.params.id_detail_keranjang).then(function(
+      row
+    ) {
+      row.update(req.body);
+      res.json(row);
+    });
+  },
+  delete(req, res) {
+    DetailKeranjang.findByPk(req.params.id_detail_keranjang).then(function(
+      row
+    ) {
+      row.destroy();
+      res.json({
+        success: true
+      });
+    });
+  }
+};

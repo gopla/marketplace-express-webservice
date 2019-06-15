@@ -1,17 +1,16 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../config/db')
+const DetailKeranjang = require('./DetailKeranjang')
 
 const Keranjang = sequelize.define(
     "keranjang", {
-        id_user: {
+        id_keranjang: {
             type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement:true
         },
 
-        id_produk: {
-            type: Sequelize.INTEGER,
-        },
-
-        jumlah: {
+        total: {
             type: Sequelize.INTEGER,
         }
     },{
@@ -20,5 +19,7 @@ const Keranjang = sequelize.define(
         tableName: 'keranjang'
     }
 )
+
+Keranjang.hasMany(DetailKeranjang, {foreignKey: 'id_keranjang'})
 
 module.exports = Keranjang
