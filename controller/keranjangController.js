@@ -1,12 +1,12 @@
 const Keranjang = require("../model/Keranjang");
-const Produk = require("../model/Produk")
+const Produk = require("../model/Produk");
 
 module.exports = {
   index(req, res) {
     Keranjang.findAll({
-        include: {
-            model: Produk
-        }
+      include: {
+        model: Produk
+      }
     }).then(function(rows) {
       res.json(rows);
     });
@@ -19,7 +19,9 @@ module.exports = {
     }).then(function(rows) {
       if (rows.length) {
         Keranjang.findByPk(rows[0].id_keranjang).then(function(row) {
-          row.update(req.body);
+          row.update({
+            jumlah: rows[0].jumlah + req.body.jumlah
+          });
           res.json(row);
         });
       } else {
