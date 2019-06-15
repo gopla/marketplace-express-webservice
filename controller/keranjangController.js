@@ -1,40 +1,42 @@
-const DetailKeranjang = require("../model/DetailKeranjang");
+const Keranjang = require("../model/Keranjang");
+const Produk = require("../model/Produk")
 
 module.exports = {
   index(req, res) {
-    DetailKeranjang.find({
-      where: {
-        id_keranjang: req.params.id
-      }
+    Keranjang.findAll({
+        include: {
+            model: Produk
+        }
     }).then(function(rows) {
       res.json(rows);
     });
-
-    // res.json(
-    //   await DetailKeranjang.find({
-    //     where: {
-    //       id_keranjang: req.params.id
-    //     }
-    //   })
-    // );
   },
   store(req, res) {
-    DetailKeranjang.create(req.body).then(function(rows) {
-      res.json(rows);
+    Keranjang.findAll({
+      where: {
+        id_produk: req.body.id_produk
+      }
+    }).then(function(rows) {
+      if (rows.length) {
+        Keranjang.findByPk(rows[0].id_keranjang).then(function(row) {
+          row.update(req.body);
+          res.json(row);
+        });
+      } else {
+        Keranjang.create(req.body).then(function(row) {
+          res.json(row);
+        });
+      }
     });
   },
   update(req, res) {
-    DetailKeranjang.findByPk(req.params.id_detail_keranjang).then(function(
-      row
-    ) {
+    Keranjang.findByPk(req.params.id).then(function(row) {
       row.update(req.body);
       res.json(row);
     });
   },
   delete(req, res) {
-    DetailKeranjang.findByPk(req.params.id_detail_keranjang).then(function(
-      row
-    ) {
+    Keranjang.findByPk(req.params.id).then(function(row) {
       row.destroy();
       res.json({
         success: true
