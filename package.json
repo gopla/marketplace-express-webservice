@@ -19,12 +19,8 @@
   },
   "homepage": "https://github.com/Yudhst/marketplace-express-webservice#readme",
   "dependencies": {
-<<<<<<< HEAD
     "express": "^4.17.1",
-=======
     "cors": "^2.8.5",
-    "express": "^4.17.0",
->>>>>>> 6a72b868ebda66a19d4373ef1b340970d2d1387f
     "mysql": "^2.17.1",
     "mysql2": "^1.6.5",
     "path": "^0.12.7",
