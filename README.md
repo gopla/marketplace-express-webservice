@@ -26,19 +26,14 @@ Service Produk
 
 Service Keranjang
 
-    GET /keranjang/:id/detail_keranjang
+    GET /keranjang/
 
-        menampilkan detail_keranjang berdasarkan id_keranjang
+        menampilkan data keranjang
 
-    POST /keranjang/:id/detail_keranjang
+    POST /keranjang/
 
         menambahkan produk ke keranjang
 
-    PUT /keranjang/:id/detail_keranjang/:id_detail_keranjang
+    PUT /keranjang/:id
 
-        mengubah detail_keranjang berdasarkan id_detail_keranjang
-
-    DELETE /keranjang/:id/detail_keranjang/:id_detail_keranjang
-
-        menghapus detail_keranjang berdasarkan id_detail_keranjang
-
+        mengubah produk pada keranjang
