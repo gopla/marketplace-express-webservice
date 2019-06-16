@@ -1,4 +1,4 @@
-const Produk = require("../model/Produk");
+const { Produk } = require("../models");
 
 module.exports = {
   index(req, res) {
