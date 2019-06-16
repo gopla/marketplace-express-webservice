@@ -37,3 +37,6 @@ Service Keranjang
     PUT /keranjang/:id
 
         mengubah produk pada keranjang
+    
+    DELETE /keranjang/:id
+        menghapus produk pada keranjang
