@@ -1,5 +1,4 @@
-const Keranjang = require("../model/Keranjang");
-const Produk = require("../model/Produk");
+const { Keranjang, Produk } = require('../models')
 
 module.exports = {
   index(req, res) {
