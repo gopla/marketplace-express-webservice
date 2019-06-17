@@ -23,7 +23,7 @@ module.exports = {
         if (rows.length) {
           keranjang.findByPk(rows[0].id_keranjang).then(function(row) {
             row.update({
-              jumlah: rows[0].jumlah + req.body.jumlah
+              jumlah: rows[0].jumlah + parseInt(req.body.jumlah)
             });
             res.json(row);
           });
