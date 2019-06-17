@@ -1,43 +1,47 @@
-const { Keranjang, Produk } = require('../models')
+const { keranjang, produk } = require("../models");
 
 module.exports = {
   index(req, res) {
-    Keranjang.findAll({
-      include: {
-        model: Produk
-      }
-    }).then(function(rows) {
-      res.json(rows);
-    });
+    keranjang
+      .findAll({
+        include: {
+          model: produk
+        }
+      })
+      .then(function(rows) {
+        res.json(rows);
+      });
   },
   store(req, res) {
-    Keranjang.findAll({
-      where: {
-        id_produk: req.body.id_produk
-      }
-    }).then(function(rows) {
-      if (rows.length) {
-        Keranjang.findByPk(rows[0].id_keranjang).then(function(row) {
-          row.update({
-            jumlah: rows[0].jumlah + req.body.jumlah
+    keranjang
+      .findAll({
+        where: {
+          id_produk: req.body.id_produk
+        }
+      })
+      .then(function(rows) {
+        if (rows.length) {
+          keranjang.findByPk(rows[0].id_keranjang).then(function(row) {
+            row.update({
+              jumlah: rows[0].jumlah + req.body.jumlah
+            });
+            res.json(row);
           });
-          res.json(row);
-        });
-      } else {
-        Keranjang.create(req.body).then(function(row) {
-          res.json(row);
-        });
-      }
-    });
+        } else {
+          keranjang.create(req.body).then(function(row) {
+            res.json(row);
+          });
+        }
+      });
   },
   update(req, res) {
-    Keranjang.findByPk(req.params.id).then(function(row) {
+    keranjang.findByPk(req.params.id).then(function(row) {
       row.update(req.body);
       res.json(row);
     });
   },
   delete(req, res) {
-    Keranjang.findByPk(req.params.id).then(function(row) {
+    keranjang.findByPk(req.params.id).then(function(row) {
       row.destroy();
       res.json({
         success: true
