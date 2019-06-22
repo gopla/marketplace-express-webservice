@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use("/produk", require("./routes/produkRouter"));
 app.use("/keranjang", require("./routes/keranjangRouter"));
-app.use("/provinsi", require("./routes/daerahRouter"));
+app.use("/provinsi", require("./routes/provinsiRouter"));
 app.use("/ongkir", require("./routes/ongkirRouter"));
 
 app.listen(process.env.PORT || 3000, function() {
