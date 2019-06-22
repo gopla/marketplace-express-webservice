@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Produk', {
+    return queryInterface.createTable("produk", {
       id_produk: {
         allowNull: false,
         autoIncrement: true,
@@ -17,17 +17,15 @@ module.exports = {
       harga: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      berat: {
+        type: Sequelize.INTEGER
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      deskripsi: {
+        type: Sequelize.TEXT
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Produk');
+    return queryInterface.dropTable("produk");
   }
 };
