@@ -1,42 +1,44 @@
-URL
+### URL
 
 https://marketplace-express.herokuapp.com/
 
-Service Produk
+### Service Produk
+-  **GET**  */produk*
+> menampilkan semua produk
 
-    GET /produk
+- **GET** */produk/:id*
+> menampilkan produk berdasarkan id
 
-        menampilkan semua produk
+- **POST** */produk*
+> menambahkan produk baru
 
-    GET /produk/:id
+- **PUT** */produk/:id*
+> mengubah produk berdasarkan id
 
-        menampilkan produk berdasarkan id
+- **DELETE** */produk/:id*
+> menghapus produk berdasarkan id
 
-    POST /produk
+### Service Keranjang
 
-        menambahkan produk baru
+- **GET** */keranjang/*
+> menampilkan seluruh produk pada keranjang user
 
-    PUT /produk/:id
+- **POST** */keranjang/*
+> menambahkan produk ke keranjang
 
-        mengubah produk berdasarkan id
+- **PUT** */keranjang/:id/*
+> mengubah produk berdasarkan id_keranjang
 
-    DELETE /produk/:id
+- **DELETE** */keranjang/:id/*
+> menghapus produk dalam keranjang berdasarkan id_keranjang
 
-        menghapus produk berdasarkan id
+### Service Ongkir
 
-Service Keranjang
+- **GET** */provinsi/*
+> menampilkan seluruh provinsi
 
-    GET /keranjang/
+- **GET** */provinsi/:id/kota*
+> menampilkan seluruh kota berdasarkan provinsi
 
-        menampilkan data keranjang
-
-    POST /keranjang/
-
-        menambahkan produk ke keranjang
-
-    PUT /keranjang/:id
-
-        mengubah produk pada keranjang
-    
-    DELETE /keranjang/:id
-        menghapus produk pada keranjang
+- **GET** */ongkir*
+> menghitung ongkir
