@@ -42,3 +42,26 @@ https://marketplace-express.herokuapp.com/
 
 - **GET** */ongkir*
 > menghitung ongkir
+
+### Service Transaksi
+
+- **GET** */transaksi*
+> menampilkan seluruh transaksi
+
+- **GET** */transaksi/:id*
+> menampilkan satu transaksi berdasarkan id
+
+- **GET** */transaksi/:id/detail*
+> menampilkan seluruh detail transaksi berdasarkan id transaksi
+
+- **GET** */transaksi/:id/detail/:id_detail*
+> menampilkan satu detail berdasarkan id detail transaksi
+
+- **POST** */transaksi*
+> menambah transaksi
+
+- **POST** */transaksi/:id/detail*
+> menambah detail transaksi
+
+- **PUT** */transaksi/:id*
+> mengupdate transaksi (untuk upload bukti)
