@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   produk.associate = function(models) {
-    // associations can be defined here
+    produk.hasMany(models.detail_transaksi, {foreignKey:'id_produk'})
   };
   return produk;
 };
