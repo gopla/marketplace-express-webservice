@@ -58,6 +58,9 @@ module.exports = {
     detail_transaksi.findAll({
         where: {
             id_transaksi: req.params.id
+        },
+        include: {
+          model: produk
         }
     }).then(function(rows) {
       res.json(rows);
@@ -69,7 +72,11 @@ module.exports = {
     });
   },
   showDetail(req, res) {
-    detail_transaksi.findByPk(req.params.id_detail).then(function(rows) {
+    detail_transaksi.findByPk(req.params.id_detail, {
+      include: {
+        model: produk
+      }
+    }).then(function(rows) {
       res.json(rows);
     });
   },

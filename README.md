@@ -1,42 +1,67 @@
-URL
+### URL
 
 https://marketplace-express.herokuapp.com/
 
-Service Produk
+### Service Produk
+-  **GET**  */produk*
+> menampilkan semua produk
 
-    GET /produk
+- **GET** */produk/:id*
+> menampilkan produk berdasarkan id
 
-        menampilkan semua produk
+- **POST** */produk*
+> menambahkan produk baru
 
-    GET /produk/:id
+- **PUT** */produk/:id*
+> mengubah produk berdasarkan id
 
-        menampilkan produk berdasarkan id
+- **DELETE** */produk/:id*
+> menghapus produk berdasarkan id
 
-    POST /produk
+### Service Keranjang
 
-        menambahkan produk baru
+- **GET** */keranjang/*
+> menampilkan seluruh produk pada keranjang user
 
-    PUT /produk/:id
+- **POST** */keranjang/*
+> menambahkan produk ke keranjang
 
-        mengubah produk berdasarkan id
+- **PUT** */keranjang/:id/*
+> mengubah produk berdasarkan id_keranjang
 
-    DELETE /produk/:id
+- **DELETE** */keranjang/:id/*
+> menghapus produk dalam keranjang berdasarkan id_keranjang
 
-        menghapus produk berdasarkan id
+### Service Ongkir
 
-Service Keranjang
+- **GET** */provinsi/*
+> menampilkan seluruh provinsi
 
-    GET /keranjang/
+- **GET** */provinsi/:id/kota*
+> menampilkan seluruh kota berdasarkan provinsi
 
-        menampilkan data keranjang
+- **GET** */ongkir*
+> menghitung ongkir
 
-    POST /keranjang/
+### Service Transaksi
 
-        menambahkan produk ke keranjang
+- **GET** */transaksi*
+> menampilkan seluruh transaksi
 
-    PUT /keranjang/:id
+- **GET** */transaksi/:id*
+> menampilkan satu transaksi berdasarkan id
 
-        mengubah produk pada keranjang
-    
-    DELETE /keranjang/:id
-        menghapus produk pada keranjang
+- **GET** */transaksi/:id/detail*
+> menampilkan seluruh detail transaksi berdasarkan id transaksi
+
+- **GET** */transaksi/:id/detail/:id_detail*
+> menampilkan satu detail berdasarkan id detail transaksi
+
+- **POST** */transaksi*
+> menambah transaksi
+
+- **POST** */transaksi/:id/detail*
+> menambah detail transaksi
+
+- **PUT** */transaksi/:id*
+> mengupdate transaksi (untuk upload bukti)
