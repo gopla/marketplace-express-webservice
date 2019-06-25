@@ -1,4 +1,52 @@
-const { transaksi, detail_transaksi, produk } = require("../models");
+const { transaksi, detail_transaksi, produk, keranjang } = require("../models");
+
+async function createDetail(transaksi, keranjang) {
+    let detail = await detail_transaksi.create({
+        id_transaksi: transaksi.id_transaksi,
+        id_produk: keranjang.id_produk,
+        jumlah: keranjang.jumlah,
+        subtotal: keranjang.produk.harga * keranjang.jumlah,
+        berat: keranjang.produk.berat * keranjang.jumlah
+    })
+    await deleteKeranjang(keranjang.id_keranjang)
+    return detail
+}
+
+async function deleteKeranjang(id_keranjang) {
+    let keran = await keranjang.findByPk(id_keranjang)
+    await keran.destroy()
+}
+
+async function updateStokProduk(keranjang) {
+    let prod = await produk.findByPk(keranjang.id_produk)
+    prod.stok -= keranjang.jumlah
+    await prod.save()
+}
+
+function updateTransaksi(transaksi, detail) {
+    let trans = transaksi
+    trans.total_harga += detail.subtotal
+    trans.total_berat += detail.berat
+    return trans
+}
+
+function createTransaksi(trans) {
+    return new Promise(async (resolve, reject) => {
+        let transaksi = trans
+        let keran = await keranjang.findAll({
+            include: {
+              model: produk
+            }
+          })
+        for (let i = 0; i < keran.length; i++) {
+            let detail = await createDetail(trans, keran[i])
+            await updateStokProduk(keran[i])
+            transaksi = updateTransaksi(transaksi, detail)
+        }
+        resolve(transaksi)
+        reject("error")
+    })
+}
 
 module.exports = {
   index(req, res) {
@@ -26,8 +74,14 @@ module.exports = {
     });
   },
   store(req, res) {
-    transaksi.create(req.body).then(function(rows) {
-      res.json(rows);
+    transaksi.create(req.body).then(function(trans) {
+        createTransaksi(trans)
+        .then(function (transaksi) {
+            return trans.update(transaksi)
+        })
+        .then(function (rows) {
+            res.json(rows);
+        })
     });
   },
   storeDetail(req, res) {

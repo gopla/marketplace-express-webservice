@@ -1,12 +1,10 @@
 {
   "development": {
-    "username": "gopla",
-    "password": "zaq123",
+    "username": "root",
+    "password": null,
     "database": "marketplace",
-    "host": "mysql-3029-0.cloudclusters.net",
-    "port": 10019,
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "host": "localhost",
+    "dialect": "mysql"
   },
   "test": {
     "username": "gopla",
