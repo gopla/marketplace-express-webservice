@@ -34,7 +34,7 @@ module.exports = {
           data.id_provinsi = data.province_id;
           data.provinsi = data.province;
           data.id_kota = data.city_id;
-          data.nama = data.city_name;
+          data.kota = data.city_name;
           data.tipe = data.type;
           data.kode_pos = data.postal_code;
           delete data.province_id;
