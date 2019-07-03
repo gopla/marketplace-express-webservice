@@ -7,13 +7,10 @@ module.exports = {
   getProvinsi(req, res) {
     rajaOngkir.getProvinces().then(function(data) {
       let obj = data.rajaongkir.results;
-      let provinsi = obj.map(data => {
-        data.id_provinsi = data.province_id;
-        data.nama = data.province;
-        delete data.province_id;
-        delete data.province;
-        return data;
-      });
+      let provinsi = obj.map(data => ({
+        id_provinsi: data.province_id,
+        provinsi: data.province
+      }));
       res.json(provinsi);
     });
   },
@@ -30,21 +27,14 @@ module.exports = {
       )
       .then(response => {
         let obj = response.data.rajaongkir.results;
-        let kota = obj.map(data => {
-          data.id_provinsi = data.province_id;
-          data.provinsi = data.province;
-          data.id_kota = data.city_id;
-          data.kota = data.city_name;
-          data.tipe = data.type;
-          data.kode_pos = data.postal_code;
-          delete data.province_id;
-          delete data.province;
-          delete data.city_id;
-          delete data.city_name;
-          delete data.type;
-          delete data.postal_code;
-          return data;
-        });
+        let kota = obj.map(data => ({
+          id_provinsi: data.province_id,
+          provinsi: data.province,
+          id_kota: data.city_id,
+          kota: data.city_name,
+          tipe: data.type,
+          kode_pos: data.postal_code
+        }));
         res.json(kota);
       });
   }
