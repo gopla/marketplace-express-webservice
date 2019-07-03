@@ -113,31 +113,38 @@ module.exports = {
     })
   },
   update(req, res) {
-    transaksi.findByPk(req.params.id).then(function(row) {
-      row.update(req.body);
-      res.json(row);
-    });
+    const encoded = req.file.buffer.toString('base64')
+    transaksi.findByPk(req.params.id).then(function (row) {
+      row.update({
+        bukti_bayar: encoded
+      }).then(function(updatedRow) {
+        res.json(updatedRow)
+      })
+    })
   },
   updateDetail(req, res) {
     detail_transaksi.findByPk(req.params.id_detail).then(function(row) {
-      row.update(req.body);
-      res.json(row);
+      row.update(req.body).then(function(updatedRow){
+        res.json(updatedRow)
+      })
     });
   },
   delete(req, res) {
     transaksi.findByPk(req.params.id).then(row => {
-      row.destroy();
-      res.json({
-        success: true
-      });
+      row.destroy().then(function () {
+        res.json({
+          success: true
+        });
+      })
     });
   },
   deleteDetail(req, res) {
     detail_transaksi.findByPk(req.params.id_detail).then(row => {
-      row.destroy();
-      res.json({
-        success: true
-      });
+      row.destroy().then(function () {
+        res.json({
+          success: true
+        });
+      })
     });
   }
 };
