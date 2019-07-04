@@ -10,7 +10,18 @@ module.exports = {
       weight: req.body.berat
     };
     rajaOngkir.getJNECost(params).then(function(data) {
-      res.json(data);
+      let obj = data.rajaongkir.results[0].costs;
+      for (let i = 0; i < obj.length; i++) {
+        if (obj[i].service === "REG") {
+          let ongkir = obj[i];
+          res.json(ongkir);
+        } else {
+          res.json({
+            error: "true",
+            message: "Data tidak ditemukan"
+          });
+        }
+      }
     });
   }
 };
