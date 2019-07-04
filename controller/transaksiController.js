@@ -113,7 +113,7 @@ module.exports = {
     })
   },
   update(req, res) {
-    const encoded = req.file.buffer.toString('base64')
+    const encoded = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`
     transaksi.findByPk(req.params.id).then(function (row) {
       row.update({
         bukti_bayar: encoded
