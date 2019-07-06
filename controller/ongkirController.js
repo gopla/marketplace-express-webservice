@@ -15,13 +15,9 @@ module.exports = {
         if (obj[i].service === "REG") {
           let ongkir = obj[i];
           res.json(ongkir);
-        } else {
-          res.json({
-            error: "true",
-            message: "Data tidak ditemukan"
-          });
         }
       }
+      // res.json(obj);
     });
   }
 };
