@@ -10,14 +10,16 @@ module.exports = {
       weight: req.body.berat
     };
     rajaOngkir.getJNECost(params).then(function(data) {
-      let obj = data.rajaongkir.results[0].costs;
+      var obj = data.rajaongkir.results[0].costs;
       for (let i = 0; i < obj.length; i++) {
         if (obj[i].service === "REG") {
-          let ongkir = obj[i];
-          res.json(ongkir);
+          res.json(obj[i]);
         }
       }
-      // res.json(obj);
+      res.json({
+        error: "true",
+        message: "Rute JNE REG tidak ada"
+      });
     });
   }
 };
