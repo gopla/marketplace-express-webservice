@@ -84,7 +84,8 @@ module.exports = {
     transaksi.create(req.body).then(function(trans) {
         createTransaksi(trans)
         .then(function (transaksi) {
-            return trans.update(transaksi)
+            trans = transaksi
+            return trans.save()
         })
         .then(function (rows) {
             res.json(rows);
@@ -102,8 +103,8 @@ module.exports = {
               prod.stok = prod.stok - detail.jumlah
               prod.save().then(function (prod2) {
                 transaksi.findByPk(req.params.id).then(function (tran) {
-                    transaksi.total_harga += detail.subtotal
-                    transaksi.total_berat += detail.berat
+                    tran.total_harga += detail.subtotal
+                    tran.total_berat += detail.berat
                     tran.save().then(function (tran2) {
                         res.json(det);
                     })
