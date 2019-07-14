@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
-      id_transaksi: DataTypes.INTEGER,
+      id_transaksi: DataTypes.STRING,
       id_produk: DataTypes.INTEGER,
       subtotal: DataTypes.INTEGER,
       jumlah: DataTypes.INTEGER,

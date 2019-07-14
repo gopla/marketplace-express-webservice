@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.use("/produk", require("./routes/produkRouter"));
 app.use("/keranjang", require("./routes/keranjangRouter"));
-app.use("/transaksi", require("./routes/transaksiRouter"))
+app.use("/transaksi", require("./routes/transaksiRouter"));
 app.use("/provinsi", require("./routes/provinsiRouter"));
 app.use("/ongkir", require("./routes/ongkirRouter"));
 

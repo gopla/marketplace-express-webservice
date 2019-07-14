@@ -4,9 +4,8 @@ module.exports = {
     return queryInterface.createTable("transaksi", {
       id_transaksi: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       total_harga: {
         type: Sequelize.INTEGER
