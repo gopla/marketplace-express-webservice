@@ -4,9 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     "transaksi",
     {
       id_transaksi: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        type: DataTypes.STRING,
+        primaryKey: true
       },
       total_harga: {
         type: DataTypes.INTEGER,
