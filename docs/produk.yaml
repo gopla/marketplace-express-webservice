@@ -1,0 +1,230 @@
+paths:
+  /produk:
+    get:
+      tags:
+        - Produk
+      summary: Get semua Produk
+      operationId: getSemuaProduk
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Get semua Produk'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Produk'
+    post:
+      tags:
+        - Produk
+      summary: Create satu Produk
+      operationId: createSatuProduk
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Produk
+          description: Produk untuk ditambahkan
+          schema:
+            $ref: '#/definitions/ProdukBody'
+      responses:
+        200:
+          description: 'Return produk yang ditambahkan'
+          schema:
+            $ref: '#/definitions/Produk'
+
+  /produk/{id}:
+    get:
+      tags:
+        - Produk
+      summary: Get satu Produk
+      operationId: getSatuProduk
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari produk
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Get satu Produk'
+          schema:
+            $ref: '#/definitions/Produk'
+    put:
+      tags:
+        - Produk
+      summary: Update satu Produk
+      operationId: updateSatuProduk
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari produk
+        - in: body
+          name: Produk
+          description: Produk untuk diupdate
+          schema:
+            $ref: '#/definitions/ProdukPut'
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Return produk yang diupdate'
+          schema:
+            $ref: '#/definitions/Produk'
+    delete:
+      tags:
+        - Produk
+      summary: Delete satu Produk
+      operationId: deleteSatuProduk
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari produk
+      produces:
+        - application/json
+      responses:
+        200:
+          description: '{ success: true }'
+
+definitions:
+  Produk:
+      type: object
+      required:
+      - id_produk
+      - nama
+      - stok
+      - harga
+      - berat
+      - deskripsi
+      properties:
+        id_produk:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        nama:
+          type: string
+          example: Tissue
+        stok:
+          type: integer
+          example: 10
+        harga:
+          type: integer
+          example: 15000
+        berat:
+          type: integer
+          example: 5
+        deskripsi:
+          type: text
+          example: This is Tissue
+
+  ProdukBody:
+    type: object
+    required:
+    - nama
+    - stok
+    - harga
+    - berat
+    - deskripsi
+    properties:
+      nama:
+        type: string
+        example: Tissue
+      stok:
+        type: integer
+        example: 10
+      harga:
+        type: integer
+        example: 15000
+      berat:
+        type: integer
+        example: 5
+      deskripsi:
+        type: text
+        example: This is Tissue
+
+  ProdukPut:
+      type: object
+      properties:
+        nama:
+          type: string
+          example: Tissue
+        stok:
+          type: integer
+          example: 10
+        harga:
+          type: integer
+          example: 15000
+        berat:
+          type: integer
+          example: 5
+        deskripsi:
+          type: text
+          example: This is Tissue
+
+  #   post:
+  #     tags:
+  #       - item
+  #     summary: 'create a new item record'
+  #     produces:
+  #       - application/json
+  #     parameters:
+  #       -
+  #         in: body
+  #         name: 'Create Item'
+  #         description: 'Create a new item record'
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: 'message :"Item Created", SUCCESS: item'
+  #   get:
+  #     tags:
+  #       - item
+  #     summary: 'get all item record'
+  #     produces:
+  #       - application/json
+  #     responses:
+  #       '200':
+  #         description: OK
+  # /item/{id}:
+  #   get:
+  #     summary: Get a item by ID
+  #     parameters:
+  #       - in: path
+  #         name: id
+  #         schema:
+  #           type: integer
+  #         required: true
+  #         description: Numeric ID of the user to get
+  #     responses:
+  #       '200':
+  #         description: OK
+  #   put:
+  #     tags:
+  #       - item
+  #     summary: Update excsiting item record by ID
+  #     parameters:
+  #       -
+  #         in: body
+  #         name: 'Update exiting name'
+  #         desc: 'Update exiting description'
+  #         required: false
+  #     responses:
+  #       '200':
+  #         description: OK
+  #   delete:
+  #     tags:
+  #       - item
+  #     summary: Delete a item record by ID.
