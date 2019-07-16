@@ -1,0 +1,75 @@
+paths:
+  /ongkir:
+    post:
+      tags:
+        - Ongkir
+      summary: Get data Ongkir
+      operationId: postOngkir
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Ongkir
+          description: asal, tujuan dan berat
+          schema:
+            $ref: "#/definitions/OngkirBody"
+      responses:
+        200:
+          description: "Return data ongkir"
+          schema:
+            $ref: "#/definitions/OngkirTrue"
+
+        201:
+          description: "Return bila data tidak ada"
+          schema:
+            $ref: "#/definitions/OngkirFalse"
+
+definitions:
+  OngkirBody:
+    type: object
+    required:
+      - asal
+      - tujuan
+      - berat
+    properties:
+      asal:
+        type: string
+        example: "256"
+      tujuan:
+        type: string
+        example: "17"
+      berat:
+        type: integer
+        example: 800
+
+  OngkirTrue:
+    type: object
+    required:
+      - service
+      - description
+      - cost
+    properties:
+      service:
+        type: string
+        example: "REG"
+      description:
+        type: string
+        example: "Layanan Reguler"
+      cost:
+        type: array
+        example: [{ "value": 26000, "etd": "2-3", "note": "" }]
+
+  OngkirFalse:
+    type: object
+    required:
+      - error
+      - message
+    properties:
+      error:
+        type: string
+        example: "true"
+      message:
+        type: string
+        example: "Rute JNE REG tidak ada"

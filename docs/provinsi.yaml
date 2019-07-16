@@ -1,0 +1,101 @@
+paths:
+  /provinsi:
+    get:
+      tags:
+        - Provinsi
+      summary: Get data Provinsi
+      operationId: getProvinsi
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Get data provinsi"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Provinsi"
+
+  /provinsi/{id}:
+    get:
+      tags:
+        - Provinsi
+      summary: Get satu Provinsi
+      operationId: getProvinsiById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari provinsi
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Get satu provinsi"
+          schema:
+            $ref: "#/definitions/Provinsi"
+
+  /provinsi/{id}/kota:
+    get:
+      tags:
+        - Provinsi
+      summary: Get Kota di satu provinsi
+      operationId: getKotaByIdProvinsi
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari provinsi
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Get Kota di satu provinsi"
+          schema:
+            $ref: "#/definitions/Provinsi"
+
+definitions:
+  Provinsi:
+    type: object
+    required:
+      - id_provinsi
+      - provinsi
+    properties:
+      id_provinsi:
+        type: string
+        example: "11"
+      provinsi:
+        type: string
+        example: "Jawa Timur"
+
+  Kota:
+    type: object
+    required:
+      - id_provinsi
+      - provinsi
+      - id_kota
+      - kota
+      - tipe
+      - kode_pos
+    properties:
+      id_provinsi:
+        type: string
+        example: "11"
+      provinsi:
+        type: string
+        example: "Jawa Timur"
+      id_kota:
+        type: string
+        example: "256"
+      kota:
+        type: string
+        example: "Malang"
+      tipe:
+        type: string
+        example: "Kota"
+      kode_pos:
+        type: string
+        example: "65112"
