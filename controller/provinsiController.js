@@ -16,7 +16,10 @@ module.exports = {
   },
   getProvinsiById(req, res) {
     rajaOngkir.getProvince(req.params.id).then(function(data) {
-      res.json(data);
+      res.json({
+        id_provinsi: data.rajaongkir.results.province_id,
+        provinsi: data.rajaongkir.results.province
+      });
     });
   },
   getKota(req, res) {
