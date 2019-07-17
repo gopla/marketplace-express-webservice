@@ -1,0 +1,133 @@
+paths:
+  /keranjang:
+    get:
+      tags:
+        - Keranjang
+      summary: Get semua data pada satu Keranjang
+      operationId: getSemuaKeranjang
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Get semua Keranjang"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Keranjang"
+    post:
+      tags:
+        - Keranjang
+      summary: Menambahkan satu produk ke Keranjang
+      operationId: inputSatuProdukKeranjang
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Keranjang
+          description: Produk untuk ditambahkan ke Keranjang
+          schema:
+            $ref: "#/definitions/KeranjangBody"
+      responses:
+        200:
+          description: "Return produk yang ditambahkan ke keranjang"
+          schema:
+            $ref: "#/definitions/Keranjang"
+
+  /keranjang/{id}:
+    put:
+      tags:
+        - Keranjang
+      summary: Edit jumlah produk di Keranjang
+      operationId: updateSatuProdukKeranjang
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari Keranjang
+        - in: body
+          name: Produk
+          required: true
+          description: Jumlah produk di keranjang
+          schema:
+            $ref: "#/definitions/KeranjangPut"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Return data produk yang diupdate"
+          schema:
+            $ref: "#/definitions/KeranjangPutRes"
+    delete:
+      tags:
+        - Keranjang
+      summary: Delete satu Produk di Keranjang
+      operationId: deleteSatuProdukKeranjang
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari Keranjang
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "{ success: true }"
+
+definitions:
+  Keranjang:
+    type: object
+    required:
+      - id_keranjang
+      - id_produk
+      - jumlah
+    properties:
+      id_keranjang:
+        type: integer
+        example: 12
+      id_produk:
+        type: integer
+        example: 1
+      jumlah:
+        type: integer
+        example: 5
+
+  KeranjangBody:
+    type: object
+    required:
+      - id_produk
+      - jumlah
+    properties:
+      id_produk:
+        type: integer
+        example: 1
+      jumlah:
+        type: integer
+        example: 5
+
+  KeranjangPut:
+    type: object
+    properties:
+      jumlah:
+        type: integer
+        example: 5
+
+  KeranjangPutRes:
+    type: object
+    properties:
+      id_keranjang:
+        type: integer
+        example: 60
+      id_produk:
+        type: integer
+        example: 2
+      jumlah:
+        type: integer
+        example: 5
