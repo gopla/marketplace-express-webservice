@@ -1,0 +1,239 @@
+paths:
+  /transaksi:
+    get:
+      tags:
+        - Transaksi
+      summary: Get semua transaksi
+      operationId: getSemuaTransaksi
+      produces:
+        -application/json
+      responses:
+        200:
+          description: 'Get semua transaksi'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaksi'
+    post:
+      tags:
+        - Transaksi
+      summary: Create transaksi dari keranjang
+      operationId: CreateSatuTransaksi
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Transaksi
+          description: Transaksi untuk ditambahkan
+          schema:
+            $ref: "#/definitions/TransaksiBody"
+      responses:
+        200:
+          description: "Return Transaksi yang ditambahkan"
+          schema:
+            $ref: "#/definitions/Transaksi"
+
+  /transaksi/{id}:
+    get:
+      tags:
+        - Transaksi
+      summary: Get satu transaksi
+      operationId: getSatuTransaksi
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID dari transaksi
+      produces:
+        -application/json
+      responses:
+        200:
+          description: 'Get satu transaksi'
+          schema:
+              $ref: '#/definitions/Transaksi'
+    put:
+      tags:
+        - Transaksi
+      summary: Upload bukti transaksi
+      operationId: updateSatuTransaksi
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID dari transaksi
+        - in: body
+          name: Transaksi
+          description: Bukti untuk diupdate
+          schema:
+            $ref: '#/definitions/TransaksiPut'
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      responses:
+        200:
+          description: 'Return transaksi yang diupdate'
+          schema:
+            $ref: '#/definitions/Transaksi'
+    delete:
+      tags:
+          - Transaksi
+      summary: Delete satu Transaksi (Hanya untuk development)
+      operationId: deleteSatuTransaksi
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID dari transaksi
+      produces:
+        - application/json
+      responses:
+        200:
+          description: '{ success: true }'
+
+  /transaksi/{id}/detail:
+    get:
+      tags:
+        - Detail Transaksi
+      summary: Get semua detail transaksi
+      operationId: getSemuaDetailTransaksi
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID dari transaksi
+      produces:
+        -application/json
+      responses:
+        200:
+          description: 'Get semua detail transaksi'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/DetailTransaksi'
+
+  /transaksi/{id}/detail/{id_detail}:
+    get:
+      tags:
+        - Detail Transaksi
+      summary: Get satu detail transaksi
+      operationId: getSatuDetailTransaksi
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: ID dari transaksi
+        - in: path
+          name: id_detail
+          schema:
+            type: string
+          required: true
+          description: ID dari detail transaksi
+      produces:
+        -application/json
+      responses:
+        200:
+          description: 'Get satu detail transaksi'
+          schema:
+            $ref: '#/definitions/DetailTransaksi'
+
+definitions:
+  Transaksi:
+    type: object
+    properties:
+      id_transaksi:
+        type: string,
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+      total_harga:
+        type: integer
+        example: 25000
+      total_berat:
+        type: integer
+        example: 100
+      ongkir:
+        type: integer
+        example: 33000
+      bukti_bayar:
+        type:
+          - text
+        nullable: true
+        format: base64
+        example: null
+      kota_asal:
+        type: integer
+        example: 233
+      kota_tujuan:
+        type: integer
+        example: 402
+      detail_alamat:
+        type: text
+        example: ini detil alamatnya
+      createdAt:
+        type: string
+        format: date-time
+        example: 2019-07-17T08:46:28.000Z
+      updatedAt:
+        type: string
+        format: date-time
+        example: 2019-07-17T08:46:30.000Z
+
+  TransaksiBody:
+    type: object
+    properties:
+      ongkir:
+        type: integer
+        example: 33000
+      kota_asal:
+        type: integer
+        example: 233
+      kota_tujuan:
+        type: integer
+        example: 402
+      detail_alamat:
+        type: text
+        example: ini detil alamatnya
+
+  TransaksiPut:
+    type: object
+    properties:
+      bukti_bayar:
+        type: string
+        format: binary
+
+  DetailTransaksi:
+    type: object
+    properties:
+      id_detiltransaksi:
+        type: integer
+        example: 1
+      id_transaksi:
+        type: string,
+        format: uuid
+        example: d290f1ee-6c54-4b01-90e6-d701748f0851
+      id_produk:
+        type: integer
+        example: 4
+      subtotal:
+        type: integer
+        example: 20000
+      jumlah:
+        type: integer
+        example: 2
+      berat:
+        type: integer
+        example: 10
+      produk:
+        $ref: '#/definitions/Produk'
