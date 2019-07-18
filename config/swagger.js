@@ -6,7 +6,7 @@ const swaggerDefinition = {
         version: '1.0.0', // Version of the app
         description: 'This is the REST API for Marketplace', // short description of the app
     },
-    host: `localhost:3000`, // the host or url of the app
+    host: `marketplace-express.herokuapp.com`, // the host or url of the app
     basePath: '/', // the basepath of your endpoint
 }
 
