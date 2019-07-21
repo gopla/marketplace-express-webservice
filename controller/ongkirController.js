@@ -5,8 +5,8 @@ const rajaOngkir = require("rajaongkir-nodejs").Starter(
 module.exports = {
   sumBiaya(req, res) {
     var params = {
-      origin: req.body.asal,
-      destination: req.body.tujuan,
+      origin: req.body.kota_asal,
+      destination: req.body.kota_tujuan,
       weight: req.body.berat
     };
     rajaOngkir.getJNECost(params).then(function(data) {
