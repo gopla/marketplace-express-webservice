@@ -1,0 +1,156 @@
+paths:
+  /daftar:
+    get:
+      tags:
+        - Pengguna
+      summary: Get semua Pengguna
+      operationId: getSemuaPengguna
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Get semua Pengguna"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Pengguna"
+    post:
+      tags:
+        - Pengguna
+      summary: Create satu Pengguna
+      operationId: createSatuPengguna
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Pengguna
+          description: Pengguna untuk ditambahkan
+          schema:
+            $ref: "#/definitions/PenggunaBody"
+      responses:
+        200:
+          description: "Return Pengguna yang ditambahkan"
+          schema:
+            $ref: "#/definitions/Pengguna"
+
+  /daftar/{id}:
+    get:
+      tags:
+        - Pengguna
+      summary: Get satu Pengguna
+      operationId: getSatuPengguna
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari Pengguna
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Get satu Pengguna"
+          schema:
+            $ref: "#/definitions/Pengguna"
+    put:
+      tags:
+        - Pengguna
+      summary: Update satu Pengguna
+      operationId: updateSatuPengguna
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari Pengguna
+        - in: body
+          name: Pengguna
+          description: Pengguna untuk diupdate
+          schema:
+            $ref: "#/definitions/PenggunaPut"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Return Pengguna yang diupdate"
+          schema:
+            $ref: "#/definitions/Pengguna"
+    delete:
+      tags:
+        - Pengguna
+      summary: Delete satu Pengguna
+      operationId: deleteSatuPengguna
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID dari Pengguna
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "{ success: true }"
+
+definitions:
+  Pengguna:
+    type: object
+    required:
+      - id_pengguna
+      - nama
+      - username
+      - password
+      - keanggotaan
+    properties:
+      id_pengguna:
+        type: integer
+        example: 1
+      nama:
+        type: string
+        example: Cahya Kirana Nur Hikari
+      username:
+        type: string
+        example: silau
+      password:
+        type: string
+        example: 123
+      keanggotaan:
+        type: boolean
+        example: false
+
+  PenggunaBody:
+    type: object
+    required:
+      - nama
+      - username
+      - password
+    properties:
+      nama:
+        type: string
+        example: Cahya Kirana Nur Hikari
+      username:
+        type: string
+        example: silau
+      password:
+        type: string
+        example: 123
+
+  ProdukPut:
+    type: object
+    properties:
+      nama:
+      type: string
+      example: Cahya Kirana Nur Hikari
+    username:
+      type: string
+      example: silau
+    password:
+      type: string
+      example: 123
