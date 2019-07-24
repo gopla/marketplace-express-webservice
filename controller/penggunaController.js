@@ -1,5 +1,4 @@
 const { pengguna } = require("../models");
-const jwt = require("jsonwebtoken");
 
 module.exports = {
   index(req, res) {
