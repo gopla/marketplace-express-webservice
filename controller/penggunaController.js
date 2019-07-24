@@ -1,5 +1,5 @@
 const { pengguna } = require("../models");
-const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   index(req, res) {
@@ -13,9 +13,16 @@ module.exports = {
     });
   },
   store(req, res) {
-    pengguna.create(req.body).then(rows => {
-      res.json(rows);
-    });
+    let hashedPass = bcrypt.hashSync(req.body.password, 10);
+    pengguna
+      .create({
+        nama: req.body.nama,
+        username: req.body.username,
+        password: hashedPass
+      })
+      .then(rows => {
+        res.json(rows);
+      });
   },
   update(req, res) {
     pengguna.findByPk(req.params.id).then(row => {
