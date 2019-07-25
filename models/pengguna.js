@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true
       },
       nama: DataTypes.STRING,
-      username: DataTypes.STRING,
+      username: {
+        type: DataTypes.STRING,
+        unique: true
+      },
       password: DataTypes.STRING,
       keanggotaan: DataTypes.BOOLEAN
     },

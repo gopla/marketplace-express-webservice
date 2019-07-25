@@ -22,6 +22,12 @@ module.exports = {
       })
       .then(rows => {
         res.json(rows);
+      })
+      .catch(err => {
+        res.json({
+          success: false,
+          message: `Username '${err.fields.username}' sudah ada.`
+        });
       });
   },
   update(req, res) {
