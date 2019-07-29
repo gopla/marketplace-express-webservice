@@ -13,7 +13,12 @@ module.exports = {
       .then(row => {
         if (bcrypt.compareSync(req.body.password, row[0].password)) {
           jwt.sign(
-            { username: row[0].username, nama: row[0].nama },
+            { 
+              id_user: row[0].id_user,
+              username: row[0].username,
+              nama: row[0].nama,
+              keanggotaan: row[0].keanggotaaan 
+            },
             "ayoKerja",
             function(err, token) {
               res.json({
