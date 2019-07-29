@@ -14,10 +14,10 @@ module.exports = {
         if (bcrypt.compareSync(req.body.password, row[0].password)) {
           jwt.sign(
             { 
-              id_user: row[0].id_user,
+              id_pengguna: row[0].id_pengguna,
               username: row[0].username,
               nama: row[0].nama,
-              keanggotaan: row[0].keanggotaaan 
+              keanggotaan: row[0].keanggotaan
             },
             "ayoKerja",
             function(err, token) {
