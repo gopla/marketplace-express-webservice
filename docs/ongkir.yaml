@@ -34,10 +34,10 @@ definitions:
       - kota_tujuan
       - berat
     properties:
-      asal:
+      kota_asal:
         type: string
         example: "256"
-      tujuan:
+      kota_tujuan:
         type: string
         example: "17"
       berat:
