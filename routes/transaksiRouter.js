@@ -6,6 +6,9 @@ const transaksiController = require('../controller/transaksiController')
 const multer = require('multer')
 const upload = multer()
 
+const verifyToken = require('../middlewares/verifyToken')
+
+router.use(verifyToken)
 router.get('/', transaksiController.index)
 router.get('/:id/detail', transaksiController.indexDetail)
 router.get('/:id', transaksiController.show)

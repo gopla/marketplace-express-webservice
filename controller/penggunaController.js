@@ -1,4 +1,5 @@
 const { pengguna } = require("../models");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 module.exports = {
@@ -11,6 +12,41 @@ module.exports = {
     pengguna.findByPk(req.params.id).then(row => {
       res.json(row);
     });
+  },
+  authenticate(req, res) {
+    pengguna
+      .findAll({
+        where: {
+          username: req.body.username
+        }
+      })
+      .then(row => {
+        if (bcrypt.compareSync(req.body.password, row[0].password)) {
+          jwt.sign(
+            {
+              id_pengguna: row[0].id_pengguna,
+              username: row[0].username,
+              nama: row[0].nama,
+              keanggotaan: row[0].keanggotaan
+            },
+            "ayoKerja",
+            function(err, token) {
+              res.json({
+                success: true,
+                token: token
+              });
+            }
+          );
+        } else {
+          res.json({
+            success: false,
+            message: "Akun tidak ditemukan"
+          });
+        }
+      })
+      .catch(err => {
+        res.json(err);
+      });
   },
   store(req, res) {
     let hashedPass = bcrypt.hashSync(req.body.password, 10);

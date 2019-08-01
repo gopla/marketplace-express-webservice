@@ -51,7 +51,11 @@ function createTransaksi(trans) {
 
 module.exports = {
   index(req, res) {
-    transaksi.findAll().then(function(rows) {
+    transaksi.findAll({
+      where: {
+        id_pengguna: req.user.id_pengguna
+      }
+    }).then(function(rows) {
       res.json(rows);
     });
   },
@@ -89,6 +93,7 @@ module.exports = {
     transaksi
       .create({
         id_transaksi: uuidv4(),
+        id_pengguna: req.user.id_pengguna,
         ...req.body
       })
       .then(function(trans) {

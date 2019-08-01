@@ -14,7 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         unique: true
       },
       password: DataTypes.STRING,
-      keanggotaan: DataTypes.BOOLEAN
+      keanggotaan: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      }
     },
     {
       timestamps: false,
@@ -23,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   pengguna.associate = function(models) {
-    // associations can be defined here
+    pengguna.hasMany(models.keranjang, { foreignKey: "id_pengguna" })
+    pengguna.hasMany(models.transaksi, { foreignKey: "id_pengguna" })
   };
   return pengguna;
 };

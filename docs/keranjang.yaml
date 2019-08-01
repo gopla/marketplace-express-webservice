@@ -1,6 +1,8 @@
 paths:
   /keranjang:
     get:
+      security:
+        - bearerAuth: []
       tags:
         - Keranjang
       summary: Get semua data pada satu Keranjang
@@ -15,6 +17,8 @@ paths:
             items:
               $ref: "#/definitions/Keranjang"
     post:
+      security:
+        - bearerAuth: []
       tags:
         - Keranjang
       summary: Menambahkan satu produk ke Keranjang
@@ -37,6 +41,8 @@ paths:
 
   /keranjang/{id}:
     put:
+      security:
+        - bearerAuth: []
       tags:
         - Keranjang
       summary: Edit jumlah produk di Keranjang
@@ -64,6 +70,8 @@ paths:
           schema:
             $ref: "#/definitions/KeranjangPutRes"
     delete:
+      security:
+        - bearerAuth: []
       tags:
         - Keranjang
       summary: Delete satu Produk di Keranjang
