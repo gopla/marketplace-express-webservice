@@ -7,5 +7,4 @@ router.use("/keranjang", require("../routes/keranjangRouter"));
 router.use("/transaksi", require("../routes/transaksiRouter"));
 router.use("/provinsi", require("../routes/provinsiRouter"));
 router.use("/ongkir", require("../routes/ongkirRouter"));
-router.use("/daftar", require("../routes/penggunaRouter"));
-router.use("/login", require("../routes/loginRoutes"));
+router.use("/pengguna", require("../routes/penggunaRouter"));

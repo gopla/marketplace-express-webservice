@@ -3,11 +3,16 @@ const { keranjang, produk } = require("../models");
 module.exports = {
   index(req, res) {
     keranjang
-      .findAll({
-        include: {
-          model: produk
+      .findAll(
+        {
+          where : {
+            id_pengguna: req.user.id_pengguna
+          },
+          include: {
+            model: produk
+          }
         }
-      })
+      )
       .then(function(rows) {
         res.json(rows);
       });
@@ -16,7 +21,8 @@ module.exports = {
     keranjang
       .findAll({
         where: {
-          id_produk: req.body.id_produk
+          id_produk: req.body.id_produk,
+          id_pengguna: req.user.id_pengguna
         }
       })
       .then(function(rows) {
@@ -28,7 +34,10 @@ module.exports = {
             res.json(row);
           });
         } else {
-          keranjang.create(req.body).then(function(row) {
+          let _keranjang = req.body
+          _keranjang.id_pengguna = req.user.id_pengguna
+          console.log(_keranjang)
+          keranjang.create(_keranjang).then(function(row) {
             res.json(row);
           });
         }

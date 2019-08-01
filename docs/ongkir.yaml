@@ -30,14 +30,14 @@ definitions:
   OngkirBody:
     type: object
     required:
-      - asal
-      - tujuan
+      - kota_asal
+      - kota_tujuan
       - berat
     properties:
-      asal:
+      kota_asal:
         type: string
         example: "256"
-      tujuan:
+      kota_tujuan:
         type: string
         example: "17"
       berat:

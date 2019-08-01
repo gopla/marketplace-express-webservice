@@ -9,7 +9,8 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true
       },
       id_produk: DataTypes.INTEGER,
-      jumlah: DataTypes.INTEGER
+      jumlah: DataTypes.INTEGER,
+      id_pengguna: DataTypes.INTEGER
     },
     {
       timestamps: false,
@@ -18,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   keranjang.associate = function(models) {
-    keranjang.belongsTo(models.produk, { foreignKey: "id_produk" });
+    keranjang.belongsTo(models.produk, { foreignKey: "id_produk" })
+    keranjang.belongsTo(models.pengguna, { foreignKey: "id_pengguna" })
   };
   return keranjang;
 };

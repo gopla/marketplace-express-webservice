@@ -1,5 +1,5 @@
 paths:
-  /daftar:
+  /pengguna:
     get:
       tags:
         - Pengguna
@@ -35,7 +35,7 @@ paths:
           schema:
             $ref: "#/definitions/Pengguna"
 
-  /daftar/{id}:
+  /pengguna/{id}:
     get:
       tags:
         - Pengguna
@@ -99,6 +99,28 @@ paths:
         200:
           description: "{ success: true }"
 
+  /pengguna/login:
+    post:
+      tags:
+        - Pengguna
+      summary: Login untuk pengguna
+      operationId: loginPengguna
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Pengguna
+          description: Data login pengguna
+          schema:
+            $ref: "#/definitions/PenggunaLogin"
+      responses:
+        200:
+          description: "Return token pengguna yang login"
+          schema:
+            $ref: "#/definitions/Pengguna"
+
 definitions:
   Pengguna:
     type: object
@@ -142,15 +164,25 @@ definitions:
         type: string
         example: 123
 
-  ProdukPut:
+  PenggunaLogin:
+    type: object
+    required:
+      - username
+      - password
+    properties:
+      username:
+        type: string
+        example: silau
+      password:
+        type: string
+        example: 123
+
+  PenggunaToken:
     type: object
     properties:
-      nama:
-      type: string
-      example: Cahya Kirana Nur Hikari
-    username:
-      type: string
-      example: silau
-    password:
-      type: string
-      example: 123
+      success:
+        type: boolean
+        example: true
+      token:
+        type: string
+        example: LONG STRING

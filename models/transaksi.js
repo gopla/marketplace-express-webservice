@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       kota_asal: DataTypes.INTEGER,
       kota_tujuan: DataTypes.INTEGER,
-      detail_alamat: DataTypes.TEXT
+      detail_alamat: DataTypes.TEXT,
+      id_pengguna: DataTypes.INTEGER
     },
     {
       freezeTableName: true,
@@ -33,7 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   transaksi.associate = function(models) {
-    transaksi.hasMany(models.detail_transaksi, { foreignKey: "id_transaksi" });
+    transaksi.hasMany(models.detail_transaksi, { foreignKey: "id_transaksi" })
+    transaksi.belongsTo(models.pengguna, { foreignKey: "id_pengguna" })
   };
   return transaksi;
 };
