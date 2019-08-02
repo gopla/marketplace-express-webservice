@@ -34,6 +34,40 @@ paths:
           description: "Return Pengguna yang ditambahkan"
           schema:
             $ref: "#/definitions/Pengguna"
+    put:
+      tags:
+        - Pengguna
+      security:
+        - bearerAuth: []
+      summary: Update satu Pengguna
+      operationId: updateSatuPengguna
+      parameters:
+        - in: body
+          name: Pengguna
+          description: Pengguna untuk diupdate
+          schema:
+            $ref: "#/definitions/PenggunaPut"
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "Return Pengguna yang diupdate"
+          schema:
+            $ref: "#/definitions/Pengguna"
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - Pengguna
+      summary: Delete satu Pengguna
+      operationId: deleteSatuPengguna
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "{ success: true }"
 
   /pengguna/{id}:
     get:
@@ -55,49 +89,6 @@ paths:
           description: "Get satu Pengguna"
           schema:
             $ref: "#/definitions/Pengguna"
-    put:
-      tags:
-        - Pengguna
-      summary: Update satu Pengguna
-      operationId: updateSatuPengguna
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: ID dari Pengguna
-        - in: body
-          name: Pengguna
-          description: Pengguna untuk diupdate
-          schema:
-            $ref: "#/definitions/PenggunaPut"
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      responses:
-        200:
-          description: "Return Pengguna yang diupdate"
-          schema:
-            $ref: "#/definitions/Pengguna"
-    delete:
-      tags:
-        - Pengguna
-      summary: Delete satu Pengguna
-      operationId: deleteSatuPengguna
-      parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
-          description: ID dari Pengguna
-      produces:
-        - application/json
-      responses:
-        200:
-          description: "{ success: true }"
 
   /pengguna/login:
     post:
@@ -120,6 +111,25 @@ paths:
           description: "Return token pengguna yang login"
           schema:
             $ref: "#/definitions/Pengguna"
+
+  /pengguna/anggota/daftar:
+    post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Anggota
+      summary: Daftar sebagai anggota
+      operationId: daftarAnggota
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Anggota
+          description: Bukti pembayaran simpanan pokok
+          schema:
+            $ref: '#/definitions/AnggotaBody'
 
 definitions:
   Pengguna:
@@ -186,3 +196,10 @@ definitions:
       token:
         type: string
         example: LONG STRING
+
+  AnggotaBody:
+    type: object
+    properties:
+      bukti_bayar:
+        type: string
+        format: binary

@@ -67,17 +67,31 @@ module.exports = {
       });
   },
   update(req, res) {
-    pengguna.findByPk(req.params.id).then(row => {
-      row.update(body);
+    pengguna.findByPk(req.user.id_pengguna).then(row => {
+      row.update(req.body);
       res.json(row);
     });
   },
   delete(req, res) {
-    pengguna.findByPk(req.params.id).then(row => {
+    pengguna.findByPk(req.user.id_pengguna).then(row => {
       row.destroy();
       res.json({
         success: true
       });
     });
+  },
+  storeAnggota(req, res) {
+    const encoded = `data:${
+      req.file.mimetype
+    };base64,${req.file.buffer.toString("base64")}`;
+    pengguna.findByPk(req.user.id_pengguna).then(row => {
+      row.update({
+        keanggotaan: true,
+        bukti_bayar: encoded
+      })
+      .then((updatedRow) => {
+        res.json(updatedRow)
+      })
+    })
   }
 };
