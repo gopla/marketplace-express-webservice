@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       keanggotaan: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
+      },
+      bukti_bayar: {
+        type: DataTypes.TEXT,
+        defaultValue: null
       }
     },
     {
