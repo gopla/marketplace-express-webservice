@@ -110,7 +110,7 @@ paths:
         200:
           description: "Return token pengguna yang login"
           schema:
-            $ref: "#/definitions/Pengguna"
+            $ref: "#/definitions/PenggunaToken"
 
   /pengguna/anggota/daftar:
     post:
