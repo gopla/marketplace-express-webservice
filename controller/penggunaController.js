@@ -96,7 +96,22 @@ module.exports = {
         // bukti_bayar: encoded
       })
       .then((updatedRow) => {
-        res.json(updatedRow)
+        jwt.sign(
+          {
+            id_pengguna: row.id_pengguna,
+            username: row.username,
+            nama: row.nama,
+            keanggotaan: row.keanggotaan
+          },
+          "ayoKerja",
+          function(err, token) {
+            res.json({
+              success: true,
+              user: updatedRow,
+              token
+            });
+          }
+        );
       })
     })
   },
