@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
       stok: DataTypes.INTEGER,
       harga: DataTypes.INTEGER,
       berat: DataTypes.INTEGER,
-      deskripsi: DataTypes.TEXT
+      deskripsi: DataTypes.TEXT,
+      id_usaha: DataTypes.INTEGER
     },
     {
       timestamps: false,
@@ -22,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   produk.associate = function(models) {
     produk.hasMany(models.detail_transaksi, {foreignKey:'id_produk'})
+    produk.belongsTo(models.usaha, { foreignKey: "id_usaha" })
   };
   return produk;
 };

@@ -1,23 +1,18 @@
-const { produk } = require("../models");
+const { usaha } = require("../models");
 
 module.exports = {
   index(req, res) {
-    produk.findAll().then(function(rows) {
+    usaha.findAll().then(function(rows) {
       res.json(rows);
     });
   },
   show(req, res) {
-    produk.findByPk(req.params.id).then(function(rows) {
-      res.json(rows);
-    });
-  },
-  store(req, res) {
-    produk.create({...req.body, id_usaha: req.usaha}).then(function(rows) {
+    usaha.findByPk(req.params.id).then(function(rows) {
       res.json(rows);
     });
   },
   update(req, res) {
-    produk.findByPk(req.params.id).then(function(row) {
+    usaha.findByPk(req.params.id).then(function(row) {
       row.update(req.body);
       res.json(row);
     });

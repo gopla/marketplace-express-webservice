@@ -1,4 +1,4 @@
-const { pengguna } = require("../models");
+const { pengguna, usaha } = require("../models");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -99,5 +99,11 @@ module.exports = {
         res.json(updatedRow)
       })
     })
+  },
+  bukaUsaha(req, res) {
+    usaha
+      .create({...req.body, id_pengguna: req.user.pengguna})
+      .then(rows => res.json(rows))
+      .catch(err => res.json(err))
   }
 };
