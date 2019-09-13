@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const usahaController = require('../controller/usahaCcontroller')
+const usahaController = require('../controller/usahaController')
 
 const verifyToken = require('../middlewares/verifyToken')
 const passIdUsaha = require('../middlewares/passIdUsaha')

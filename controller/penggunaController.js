@@ -87,13 +87,13 @@ module.exports = {
     });
   },
   storeAnggota(req, res) {
-    const encoded = `data:${
-      req.file.mimetype
-    };base64,${req.file.buffer.toString("base64")}`;
+    // const encoded = `data:${
+    //   req.file.mimetype
+    // };base64,${req.file.buffer.toString("base64")}`;
     pengguna.findByPk(req.user.id_pengguna).then(row => {
       row.update({
         keanggotaan: true,
-        bukti_bayar: encoded
+        // bukti_bayar: encoded
       })
       .then((updatedRow) => {
         res.json(updatedRow)
@@ -102,7 +102,7 @@ module.exports = {
   },
   bukaUsaha(req, res) {
     usaha
-      .create({...req.body, id_pengguna: req.user.pengguna})
+      .create({...req.body, id_pengguna: req.user.id_pengguna})
       .then(rows => res.json(rows))
       .catch(err => res.json(err))
   }

@@ -1,8 +1,12 @@
-const { usaha } = require("../models");
+const { usaha, pengguna } = require("../models");
 
 module.exports = {
   index(req, res) {
-    usaha.findAll().then(function(rows) {
+    usaha.findAll({
+      include: {
+        model: pengguna
+      }
+    }).then(function(rows) {
       res.json(rows);
     });
   },
@@ -18,7 +22,7 @@ module.exports = {
     });
   },
   delete(req, res) {
-    produk.findByPk(req.params.id).then(row => {
+    usaha.findByPk(req.params.id).then(row => {
       row.destroy();
       res.json({
         success: true
