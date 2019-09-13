@@ -16,7 +16,7 @@ router.post("/login", penggunaController.authenticate)
 router.put("/", verifyToken, penggunaController.update);
 router.delete("/", verifyToken, penggunaController.delete);
 
-router.post("/anggota/daftar", [verifyToken, upload.single('bukti_bayar')], penggunaController.storeAnggota)
+router.put("/anggota/daftar", [verifyToken, upload.single('bukti_bayar')], penggunaController.storeAnggota)
 router.post("/anggota/bukausaha", [verifyToken, isAnggota], penggunaController.bukaUsaha)
 
 module.exports = router;
