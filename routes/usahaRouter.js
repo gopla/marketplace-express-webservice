@@ -12,6 +12,6 @@ router.get('/:id', passIdUsaha, usahaController.show)
 router.put('/:id', [verifyToken, isAnggota,passIdUsaha], usahaController.update)
 router.delete('/:id', [verifyToken, isAnggota,passIdUsaha], usahaController.delete)
 
-router.use('/:id/produk', [verifyToken, isAnggota,passIdUsaha], require('../routes/produkRouter'))
+router.use('/:id/produk', passIdUsaha, require('../routes/produkRouter'))
 
 module.exports = router
