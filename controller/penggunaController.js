@@ -4,12 +4,16 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   index(req, res) {
-    pengguna.findAll().then(rows => {
+    pengguna.findAll({
+      include: [usaha]
+    }).then(rows => {
       res.json(rows);
     });
   },
   show(req, res) {
-    pengguna.findByPk(req.params.id).then(row => {
+    pengguna.findByPk(req.params.id, {
+      include: [usaha]
+    }).then(row => {
       res.json(row);
     });
   },
@@ -18,7 +22,8 @@ module.exports = {
       .findOne({
         where: {
           username: req.body.username
-        }
+        },
+        include: [usaha]
       })
       .then(row => {
         if(!row) {
@@ -33,7 +38,8 @@ module.exports = {
               id_pengguna: row.id_pengguna,
               username: row.username,
               nama: row.nama,
-              keanggotaan: row.keanggotaan
+              keanggotaan: row.keanggotaan,
+              usaha: row.usaha
             },
             "ayoKerja",
             function(err, token) {
@@ -90,7 +96,9 @@ module.exports = {
     // const encoded = `data:${
     //   req.file.mimetype
     // };base64,${req.file.buffer.toString("base64")}`;
-    pengguna.findByPk(req.user.id_pengguna).then(row => {
+    pengguna.findByPk(req.user.id_pengguna, {
+      include: [usaha]
+    }).then(row => {
       row.update({
         keanggotaan: true,
         // bukti_bayar: encoded
@@ -101,7 +109,8 @@ module.exports = {
             id_pengguna: row.id_pengguna,
             username: row.username,
             nama: row.nama,
-            keanggotaan: row.keanggotaan
+            keanggotaan: row.keanggotaan,
+            usaha: row.usaha
           },
           "ayoKerja",
           function(err, token) {

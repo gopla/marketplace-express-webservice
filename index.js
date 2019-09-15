@@ -15,6 +15,6 @@ app.get("/", (req, res) => {
 app.use(router);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log(" -> Server listening on port 3000");
+app.listen(process.env.PORT || 8000, function() {
+  console.log(" -> Server listening on port 8000");
 });
