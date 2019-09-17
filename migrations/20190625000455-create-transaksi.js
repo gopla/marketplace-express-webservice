@@ -22,8 +22,14 @@ module.exports = {
       kota_asal: {
         type: Sequelize.INTEGER
       },
+      nama_kota_asal: {
+        type: Sequelize.STRING
+      },
       kota_tujuan: {
         type: Sequelize.INTEGER
+      },
+      nama_kota_tujuan: {
+        type: Sequelize.STRING
       },
       detail_alamat: {
         type: Sequelize.TEXT

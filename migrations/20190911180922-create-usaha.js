@@ -14,7 +14,19 @@ module.exports = {
       kota: {
         type: Sequelize.INTEGER
       },
+      nama_kota: {
+        type: Sequelize.STRING
+      },
+      nama_provinsi: {
+        type: Sequelize.STRING
+      },
+      logo: {
+        type: Sequelize.STRING
+      },
       detail_alamat: {
+        type: Sequelize.TEXT
+      },
+      slogan: {
         type: Sequelize.TEXT
       },
       no_telp: {

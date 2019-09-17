@@ -24,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: null
       },
       kota_asal: DataTypes.INTEGER,
+      nama_kota_asal: DataTypes.STRING,
       kota_tujuan: DataTypes.INTEGER,
+      nama_kota_tujuan: DataTypes.STRING,
       detail_alamat: DataTypes.TEXT,
       id_pengguna: DataTypes.INTEGER
     },

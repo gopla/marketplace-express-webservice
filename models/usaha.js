@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     nama: DataTypes.STRING,
     kota: DataTypes.INTEGER,
+    logo: DataTypes.STRING,
+    nama_kota: DataTypes.STRING,
+    nama_provinsi: DataTypes.STRING,
     detail_alamat: DataTypes.TEXT,
+    slogan: DataTypes.TEXT,
     no_telp: DataTypes.STRING,
     id_pengguna: DataTypes.STRING
   }, {
