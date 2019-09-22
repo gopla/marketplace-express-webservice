@@ -34,6 +34,9 @@ module.exports = {
       detail_alamat: {
         type: Sequelize.TEXT
       },
+      id_usaha: {
+          type: Sequelize.INTEGER
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -36,7 +36,10 @@ function createTransaksi(trans) {
     let transaksi = trans;
     let keran = await keranjang.findAll({
       include: {
-        model: produk
+        model: produk,
+        where: {
+          id_usaha: trans.id_usaha
+        }
       }
     });
     for (let i = 0; i < keran.length; i++) {

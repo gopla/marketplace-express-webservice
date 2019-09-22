@@ -1,4 +1,4 @@
-const { keranjang, produk } = require("../models");
+const { keranjang, produk, usaha } = require("../models");
 
 module.exports = {
   index(req, res) {
@@ -9,7 +9,10 @@ module.exports = {
             id_pengguna: req.user.id_pengguna
           },
           include: {
-            model: produk
+            model: produk,
+            include: {
+              model: usaha
+            }
           }
         }
       )

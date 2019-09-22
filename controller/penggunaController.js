@@ -127,7 +127,29 @@ module.exports = {
   bukaUsaha(req, res) {
     usaha
       .create({...req.body, id_pengguna: req.user.id_pengguna})
-      .then(rows => res.json(rows))
+      .then(row => {
+        pengguna.findByPk(req.user.id_pengguna, {
+          include: [usaha]
+        }).then(pengguna => {
+          jwt.sign(
+            {
+              id_pengguna: pengguna.id_pengguna,
+              username: pengguna.username,
+              nama: pengguna.nama,
+              keanggotaan: pengguna.keanggotaan,
+              usaha: pengguna.usaha
+            },
+            "ayoKerja",
+            function(err, token) {
+              res.json({
+                success: true,
+                user: pengguna,
+                token
+              });
+            }
+          );
+        })
+      })
       .catch(err => res.json(err))
   }
 };
