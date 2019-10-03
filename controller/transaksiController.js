@@ -1,5 +1,8 @@
-const { transaksi, detail_transaksi, produk, keranjang } = require("../models");
+const { transaksi, detail_transaksi, produk, keranjang, pengguna, usaha } = require("../models");
 const uuidv4 = require("uuid/v4");
+const Sequelize = require('sequelize')
+
+const Op = Sequelize.Op;
 
 async function createDetail(transaksi, keranjang) {
   let detail = await detail_transaksi.create({
@@ -31,14 +34,19 @@ function updateTransaksi(transaksi, detail) {
   return trans;
 }
 
-function createTransaksi(trans) {
+function createTransaksi(trans, id_keranjang) {
   return new Promise(async (resolve, reject) => {
     let transaksi = trans;
     let keran = await keranjang.findAll({
+      where: {
+        id_keranjang: {
+          [Op.or]: id_keranjang
+        }
+      },
       include: {
         model: produk,
         where: {
-          id_usaha: trans.id_usaha
+          id_usaha: trans.id_usaha,
         }
       }
     });
@@ -57,7 +65,8 @@ module.exports = {
     transaksi.findAll({
       where: {
         id_pengguna: req.user.id_pengguna
-      }
+      }, 
+      order: [["createdAt", "DESC"]]
     }).then(function(rows) {
       res.json(rows);
     });
@@ -66,7 +75,16 @@ module.exports = {
     transaksi.findAll({
       where: {
         konfirmasi: false
-      }
+      },
+      include: [
+        {
+          model: pengguna
+        },
+        {
+          model: usaha
+        }
+      ],
+      order: [["createdAt", "DESC"]]
     }).then(function(rows) {
       res.json(rows);
     });
@@ -112,14 +130,15 @@ module.exports = {
       });
   },
   store(req, res) {
+    const {id_keranjang, ...rest} = req.body
     transaksi
       .create({
         id_transaksi: uuidv4(),
         id_pengguna: req.user.id_pengguna,
-        ...req.body
+        ...rest
       })
       .then(function(trans) {
-        createTransaksi(trans)
+        createTransaksi(trans, id_keranjang)
           .then(function(transaksi) {
             trans = transaksi;
             return trans.save();
