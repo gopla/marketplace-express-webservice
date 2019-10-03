@@ -62,6 +62,15 @@ module.exports = {
       res.json(rows);
     });
   },
+  indexUnconfirmed(req, res) {
+    transaksi.findAll({
+      where: {
+        konfirmasi: false
+      }
+    }).then(function(rows) {
+      res.json(rows);
+    });
+  },
   indexDetail(req, res) {
     detail_transaksi
       .findAll({
@@ -80,6 +89,16 @@ module.exports = {
     transaksi.findByPk(req.params.id).then(function(rows) {
       res.json(rows);
     });
+  },
+  confirm(req, res) {
+    transaksi.findByPk(req.params.id).then(function(row) {
+      row.update({
+        konfirmasi: true
+      })
+      .then(function(updatedRow) {
+        res.json(updatedRow)
+      })
+    })
   },
   showDetail(req, res) {
     detail_transaksi

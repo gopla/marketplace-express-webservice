@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         defaultValue: null
       },
+      konfirmasi: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
       kota_asal: DataTypes.INTEGER,
       nama_kota_asal: DataTypes.STRING,
       kota_tujuan: DataTypes.INTEGER,
