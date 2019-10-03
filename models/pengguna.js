@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       nama: DataTypes.STRING,
       username: {
         type: DataTypes.STRING,
+        
         unique: true
       },
       password: DataTypes.STRING,

@@ -19,6 +19,9 @@ module.exports = {
       bukti_bayar: {
         type: Sequelize.TEXT
       },
+      konfirmasi: {
+        type: DataTypes.BOOLEAN
+      },
       kota_asal: {
         type: Sequelize.INTEGER
       },

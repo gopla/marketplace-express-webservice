@@ -9,3 +9,4 @@ router.use("/provinsi", require("../routes/provinsiRouter"));
 router.use("/ongkir", require("../routes/ongkirRouter"));
 router.use("/pengguna", require("../routes/penggunaRouter"));
 router.use("/usaha", require('../routes/usahaRouter'))
+router.use("/admin", require('../routes/adminRouter'))
