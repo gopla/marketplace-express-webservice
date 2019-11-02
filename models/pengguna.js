@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       nama: DataTypes.STRING,
       username: {
         type: DataTypes.STRING,
-        
+
         unique: true
       },
       password: DataTypes.STRING,
@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       bukti_bayar: {
         type: DataTypes.TEXT,
         defaultValue: null
+      },
+      saldo: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       }
     },
     {
@@ -31,9 +35,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   pengguna.associate = function(models) {
-    pengguna.hasMany(models.keranjang, { foreignKey: "id_pengguna" })
-    pengguna.hasOne(models.usaha, { foreignKey: "id_pengguna" })
-    pengguna.hasMany(models.transaksi, { foreignKey: "id_pengguna" })
+    pengguna.hasMany(models.keranjang, { foreignKey: "id_pengguna" });
+    pengguna.hasOne(models.usaha, { foreignKey: "id_pengguna" });
+    pengguna.hasMany(models.transaksi, { foreignKey: "id_pengguna" });
+    pengguna.hasMany(models.pembayaran_iuran, { foreignKey: "id_pengguna" });
+    pengguna.hasMany(models.penarikan, { foreignKey: "id_pengguna" });
   };
   return pengguna;
 };

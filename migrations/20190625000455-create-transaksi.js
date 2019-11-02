@@ -20,7 +20,19 @@ module.exports = {
         type: Sequelize.TEXT
       },
       konfirmasi: {
-        type: DataTypes.BOOLEAN
+        type: Sequelize.BOOLEAN
+      },
+      konfirmasi: {
+        type: Sequelize.BOOLEAN
+      },
+      kirim: {
+        type: Sequelize.BOOLEAN
+      },
+      selesai: {
+        type: Sequelize.BOOLEAN
+      },
+      no_resi: {
+        type: Sequelize.STRING
       },
       kota_asal: {
         type: Sequelize.INTEGER
@@ -38,8 +50,12 @@ module.exports = {
         type: Sequelize.TEXT
       },
       id_usaha: {
-          type: Sequelize.INTEGER
+        type: Sequelize.INTEGER
       },
+      id_pengguna: {
+        type: Sequelize.INTEGER
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

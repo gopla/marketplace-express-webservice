@@ -1,16 +1,16 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const produkController = require('../controller/produkController')
+const produkController = require("../controller/produkController");
 
-const verifyToken = require('../middlewares/verifyToken')
-const isAnggota = require('../middlewares/isAnggota')
+const verifyToken = require("../middlewares/verifyToken");
+const isAnggota = require("../middlewares/isAnggota");
 
-router.get('/', produkController.index)
-router.get('/:id', produkController.show)
-router.use([verifyToken, isAnggota])
-router.post('/', produkController.store)
-router.put('/:id', produkController.update)
-router.delete('/:id', produkController.delete)
+router.get("/", produkController.index);
+router.get("/:id", produkController.show);
+router.use([verifyToken, isAnggota]);
+router.post("/", produkController.store);
+router.put("/:id", produkController.update);
+router.delete("/:id", produkController.destroy);
 
-module.exports = router
+module.exports = router;

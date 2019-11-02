@@ -27,6 +27,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
+      kirim: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      selesai: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      no_resi: DataTypes.STRING,
       kota_asal: DataTypes.INTEGER,
       nama_kota_asal: DataTypes.STRING,
       kota_tujuan: DataTypes.INTEGER,
@@ -41,9 +50,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   transaksi.associate = function(models) {
-    transaksi.hasMany(models.detail_transaksi, { foreignKey: "id_transaksi" })
-    transaksi.belongsTo(models.pengguna, { foreignKey: "id_pengguna" })
-    transaksi.belongsTo(models.usaha, { foreignKey: "id_usaha" })
+    transaksi.hasMany(models.detail_transaksi, { foreignKey: "id_transaksi" });
+    transaksi.belongsTo(models.pengguna, { foreignKey: "id_pengguna" });
+    transaksi.belongsTo(models.usaha, { foreignKey: "id_usaha" });
   };
   return transaksi;
 };

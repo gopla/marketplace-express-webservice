@@ -2,28 +2,32 @@ const { produk, usaha } = require("../models");
 
 module.exports = {
   index(req, res) {
-    produk.findAll({
-      where: {
-        id_usaha: req.usaha
-      }, 
-      include: {
-        model: usaha
-      }
-    }).then(function(rows) {
-      res.json(rows);
-    });
+    produk
+      .findAll({
+        where: {
+          id_usaha: req.usaha
+        },
+        include: {
+          model: usaha
+        }
+      })
+      .then(function(rows) {
+        res.json(rows);
+      });
   },
   show(req, res) {
-    produk.findByPk(req.params.id, {
-      include: {
-        model: usaha
-      }
-    }).then(function(rows) {
-      res.json(rows);
-    });
+    produk
+      .findByPk(req.params.id, {
+        include: {
+          model: usaha
+        }
+      })
+      .then(function(rows) {
+        res.json(rows);
+      });
   },
   store(req, res) {
-    produk.create({...req.body, id_usaha: req.usaha}).then(function(rows) {
+    produk.create({ ...req.body, id_usaha: req.usaha }).then(function(rows) {
       res.json(rows);
     });
   },
@@ -33,7 +37,7 @@ module.exports = {
       res.json(row);
     });
   },
-  delete(req, res) {
+  destroy(req, res) {
     produk.findByPk(req.params.id).then(row => {
       row.destroy();
       res.json({

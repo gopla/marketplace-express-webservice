@@ -20,6 +20,12 @@ module.exports = {
       },
       keanggotaan: {
         type: Sequelize.BOOLEAN
+      },
+      bukti_bayar: {
+        type: Sequelize.TEXT
+      },
+      saldo: {
+        type: Sequelize.INTEGER
       }
     });
   },

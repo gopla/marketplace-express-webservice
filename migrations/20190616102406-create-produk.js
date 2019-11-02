@@ -22,6 +22,15 @@ module.exports = {
       },
       deskripsi: {
         type: Sequelize.TEXT
+      },
+      arsip: {
+        type: Sequelize.BOOLEAN
+      },
+      id_usaha: {
+        type: Sequelize.INTEGER
+      },
+      id_kategori: {
+        type: Sequelize.INTEGER
       }
     });
   },

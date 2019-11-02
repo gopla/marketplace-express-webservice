@@ -2,20 +2,24 @@ const { usaha, pengguna, produk } = require("../models");
 
 module.exports = {
   index(req, res) {
-    usaha.findAll({
-      include: {
-        model: pengguna
-      }
-    }).then(function(rows) {
-      res.json(rows);
-    });
+    usaha
+      .findAll({
+        include: {
+          model: pengguna
+        }
+      })
+      .then(function(rows) {
+        res.json(rows);
+      });
   },
   show(req, res) {
-    usaha.findByPk(req.params.id, {
-      include: [produk]
-    }).then(function(rows) {
-      res.json(rows);
-    });
+    usaha
+      .findByPk(req.params.id, {
+        include: [produk]
+      })
+      .then(function(rows) {
+        res.json(rows);
+      });
   },
   update(req, res) {
     usaha.findByPk(req.params.id).then(function(row) {
